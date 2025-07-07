@@ -11,3 +11,5 @@ const Educator = () => {
     </div>
   )
 }
+
+export default Educator
