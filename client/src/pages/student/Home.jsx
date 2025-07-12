@@ -4,6 +4,7 @@ import Companies from "../../components/Student/Companies";
 import CoursesSection from "../../components/student/CoursesSection";
 import TestimonialsSection from "../../components/student/TestimonialsSection";
 import CallToAction from "../../components/Student/CallToAction";
+import Footer from "../../components/student/Footer";
 
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
       <CoursesSection />
       <TestimonialsSection />
       <CallToAction />
+      <Footer />
     </div>
   );
 };
