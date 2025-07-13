@@ -17,9 +17,9 @@ export default {
       gridTemplateColumns: {
         auto: "repeat(auto-fit, minmax(200px, 1fr))",
       },
-      spacing: {
-        "section-height": "500px",
-      },
+      // spacing: {
+      //   "section-height": "500px",
+      // },
       maxWidth: {
         "course-card": "424px",
       },
