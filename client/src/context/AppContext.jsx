@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { dummyCourses } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import humanizeDuration from "humanize-duration";
+
 export const AppContext = createContext();
 
 export const AppContextProvider = (props) => {
@@ -10,13 +11,15 @@ export const AppContextProvider = (props) => {
 
   const [allCourses, setAllCourses] = useState([]);
   const [isEducator, setIsEducator] = useState(true);
+  const [enrolledCourses, setEnrolledCourses] = useState([]);
+
   // Fetch All Courses
   const fetchAllCourses = async () => {
     setAllCourses(dummyCourses);
   };
 
-// Function to calculate average rating of course
-const calculateRating = (course) => {
+  // Function to calculate average rating of course
+  const calculateRating = (course) => {
     if (course.courseRatings.length === 0) {
       return 0;
     }
@@ -27,8 +30,8 @@ const calculateRating = (course) => {
     return totalRating / course.courseRatings.length;
   };
 
-   // Function to Calculate Course Chapter Time
-   const calculateChapterTime = (chapter) => {
+  // Function to Calculate Course Chapter Time
+  const calculateChapterTime = (chapter) => {
     let time = 0;
     chapter.chapterContent.map((lecture) => (time += lecture.lectureDuration));
     return humanizeDuration(time * 60 * 1000, { units: ["h", "m"] });
@@ -56,9 +59,14 @@ const calculateRating = (course) => {
     return totalLectures;
   };
 
+  // Fetch User Enrolled Courses
+  const fetchUserEnrolledCourses = async () => {
+    setEnrolledCourses(dummyCourses);
+  };
 
   useEffect(() => {
     fetchAllCourses();
+    fetchUserEnrolledCourses();
   }, []);
 
   const value = {
@@ -71,6 +79,8 @@ const calculateRating = (course) => {
     calculateChapterTime,
     calculateCourseDuration,
     calculateNoOfLectures,
+    enrolledCourses,
+    fetchUserEnrolledCourses,
   };
 
   return (
